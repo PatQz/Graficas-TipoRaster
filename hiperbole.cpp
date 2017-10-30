@@ -4,8 +4,8 @@
 #include <iostream>
 using namespace std;
 int main( int argc, char* args[] ){
-   int x,y,d1,d2,p;
-   double a,b;
+   int x,y;
+   double a,b,d1,d2;
    int limite=600;
 
    if (SDL_Init(SDL_INIT_VIDEO) == 0) {
@@ -28,49 +28,53 @@ int main( int argc, char* args[] ){
             cin>>b;
         }while(a>limite and b>limite);
 
-        y=0;
         x=a;
+        y=0;
 
-        double aa = a*a;
-        double bb = b*b;
-        double fx = bb*2*a, fy = 0;
-        double d1 = 2*aa - bb - 2*a*bb;
+        int aa = a*a;
+        int bb = b*b;
+        //double d1 = 2*aa - bb - 2*a*bb;
 
-        d1=(pow(b,2)*pow(x+0.5,2))-(pow(a,2)*pow(y+1.0,2))-(pow(a,2)*pow(b,2));
-        while(fx > fy && x<=limite){
-            if(d1<=-bb/2.0){
+        d1=(bb*pow(x+0.5,2))-(aa*pow(y+1.0,2))-(aa*bb);
+        //d1=4*(a*bb + bb - aa);
+        while(2*bb*x > 2*aa*y){
+            y++;
+            if(d1>0){
                 //N
-                d1+=-(2*pow(a,2)*y)-(3*pow(a,2));
-                //x++;
-               
+                //CAMBIAR
+                d1 += -4*aa*(2*y-3);
+                
             }else{
                 //NE
                 x++;
-                d1+=(2*pow(b,2))*(x+2*pow(b,2))-(2*pow(a,2)*y)-(3*pow(a,2));
-                fx += bb*2;
+                //CAMBIAR
+                d1 = d1 + 4*2*bb*(x+1) - 4*aa*( 2*y +3);
             }
-            y++;
-            fy += aa*2;
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
-            //SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, x+300, y+300);
+             SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, y+300);
             }
         
         //REGION II
         if(a>b){
-            //d2=(pow(b,2)*pow(x+1.0,2))-(pow(a,2)*pow(y+0.5,2))-(pow(a,2)*pow(b,2));
+            //este 
+            d2=2*bb*(x+1)*(x+1) - 2*aa*bb - aa*(y*y + (y+1)*(y+1));
+            //o este
+            //d2=(bb*pow(x+1.0,2))-(aa*pow(y+0.5,2))-(aa*bb);
             while(x<=limite){
-                if(d2<=-aa/2){
-                      //NE
-                    d2+=(2*pow(b,2))*x+(3*pow(b,2))-2*pow(a,2)*y-2*pow(a,2);
+                x++;
+                if(d2>0){
+                    //NE
                     y++;
-
+                    d2+=(2*bb*x+(3*bb)-2*aa*y-2*aa);
+                    
                 }else{
                     //E
-                    d2+=2*pow(b,2)*y+3*pow(b,2);
+                    d2+=2*bb*y+3*bb;
                 }
-                y++;
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
-            //SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, x+300, y+300);
             }
         }
 

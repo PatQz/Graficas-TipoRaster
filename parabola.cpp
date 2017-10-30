@@ -44,8 +44,11 @@ int main( int argc, char* args[] ){
                 x++;
                 y++;
              }
+
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
-            SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, x+300, y+300);
+             SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, y+300);
             }
         
         //cout<<"Entre we R2"<<endl;
@@ -66,7 +69,9 @@ int main( int argc, char* args[] ){
                 y++; 
                 }
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
-            SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, x+300, y+300);
+             SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, y+300);
             }
         
 
