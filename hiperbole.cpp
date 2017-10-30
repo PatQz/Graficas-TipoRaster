@@ -25,16 +25,7 @@ int main( int argc, char* args[] ){
         y=0;
         x=0;
 
-        double aa = a*a;
-        double bb = b*b;
-        double aa2 = 2*aa;
-        double bb2 = 2*bb;
-        double fx = bb*2*a, fy = 0;
-
         d1=(pow(b,2)*pow(x+0.5,2))-(pow(a,2)*pow(y+1.0,2))-(pow(a,2)*pow(b,2));
-        //gradiente de funcion original para region I
-        //REGION I I: mientras 2x<-4*p significa que es sigue siendo menor que m=1
-        //while(2*x < -4*p){
         while(x<=limite){
             //cout<<"Entre we R1"<<endl;
             //y++;
