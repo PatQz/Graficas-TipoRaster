@@ -1,74 +1,74 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <math.h>
-
+#include <iostream>
+using namespace std;
 int main( int argc, char* args[] ){
-    int X1,Y1,X2,Y2;
-    int tp=600;
-    double dY, dX,k,X,Y,av,avR,avI,d1,d2,u,v,di;
-    int IncYi,IncXi,IncXr,IncYr;
+   int x,y,d1,d2,p;
+    y=0;
+    x=0;
+   int limite=600;
+    cout<<"=PROGRAMA GENERADOR DE PARABOLAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+    do{cout<<"Ingrese valor de p (parametro): ";
+    cin>>p;
+    }while(p>0 && p>limite);
 
-    //Event handler
-    SDL_Event e;
-    //gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-   
    if (SDL_Init(SDL_INIT_VIDEO) == 0) {
         SDL_Event event;
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
 
-        if (SDL_CreateWindowAndRenderer(tp,tp, 0, &window, &renderer) == 0) {
+        if (SDL_CreateWindowAndRenderer(limite,limite, 0, &window, &renderer) == 0) {
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
             SDL_RenderClear(renderer);
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-            X1=200; //a
-            Y1=200; //b
 
-            X=0;
-            Y=Y1;
-            int p=50;
-            d1=pow(X1,2)-4*(p*Y1); //valor inicial 
-            //SDL_RenderDrawPoint(renderer, X+300, Y+300);
-            /*SDL_RenderDrawPoint(renderer, X+300, Y+300);
-            SDL_RenderDrawPoint(renderer, -X+300, Y+300);
-            SDL_RenderDrawPoint(renderer, X+300, -Y+300);
-            SDL_RenderDrawPoint(renderer, -X+300, -Y+300);*/
-            //REGION I
-            while((pow(X1,2)*(Y+(0.5)))>(pow(Y1,2)*(X+1))){
-                if(d1<0){
-                    d1=d1+2*(X1)+3;
-                    X=X+1;
-                }else{
-                    d1=d1+3*(X1)-4*p+3;
-                    X=X+1;
-                    Y=Y-1;
-                }
-                //SDL_RenderDrawPoint(renderer, X+300, Y+300);
-                //SDL_RenderDrawPoint(renderer, -X+300, Y+300);
-                SDL_RenderDrawPoint(renderer, X+300, -Y+300);
-                SDL_RenderDrawPoint(renderer, -X+300, -Y+300);
+        d1=pow(x+1.0,2)-4*(p*y+0.5);
+        //gradiente de funcion original para region I
+        //REGION I I: mientras 2x<-4*p significa que es sigue siendo menor que m=1
+        //while(2*x < -4*p){
+       while(y < p && x<=limite){
+            //cout<<"Entre we R1"<<endl;
+            if(d1<=0){
+                //E
+                d1+=2*x-3;
+                x++;
+                //y++;
+            }else{
+                //NE
+                d1+=2*x+3-4*p;
+                x++;
+                y++;
+             }
+            SDL_RenderDrawPoint(renderer, x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, -y+300);
             }
-            //REGION II
-            d2=pow(X1+0.5,2)-4*(p*Y1+1.0);
+        
+        //cout<<"Entre we R2"<<endl;
+        //REGION II
+        d2=pow(x+0.5,2)-4*(p*(y+1.0));
+        while(x<=limite){
+            if(d2<=0){
+                //NE
+                //cout<<"Entre we NE"<<endl;
+                d2+=2*x-4*p+2;
+                x++;
+                y++;
+            }else{
+                //N
+                //cout<<"Entre we N"<<endl;
+                d2+=-4*p;
+                //x++;
+                y++; 
+                }
+            SDL_RenderDrawPoint(renderer, x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            }
+        
 
-            while(Y>0){
-               
-                if(d2<0){
-                    d2=d2-(4*p);
-                    X=X+1;
-                    Y=Y-1;
-                }else{
-                    d2=d2+2*(X1)-(4*p)+2;
-                    Y=Y-1;
-                }
-                //SDL_RenderDrawPoint(renderer, X+300, Y+300);
-                //SDL_RenderDrawPoint(renderer, -X+300, Y+300);
-                SDL_RenderDrawPoint(renderer, X+300, -Y+300);
-                SDL_RenderDrawPoint(renderer, -X+300, -Y+300);
-            }
 
         SDL_RenderPresent(renderer);
         while (1) {
@@ -76,7 +76,6 @@ int main( int argc, char* args[] ){
             break;
         }
         
-
         if (renderer) {
             SDL_DestroyRenderer(renderer);
         }

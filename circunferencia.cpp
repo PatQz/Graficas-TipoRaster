@@ -6,12 +6,18 @@ int main( int argc, char* args[] ){
     int X1,Y1,X2,Y2;
     int tp=600;
     double dY, dX,k,X,Y,av,avR,avI,d1,d2,u,v;
-    int IncYi,IncXi,IncXr,IncYr;
 
     //Event handler
     SDL_Event e;
-    //gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-   
+      X1=200; //a
+            Y1=200; //b
+        cout<<"=PROGRAMA GENERADOR DE LINEAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+    do{cout<<"Ingrese valor de X1: ";
+    cin>>X1;
+    cout<<"Ingrese valor de Y1: ";
+    cin>>Y1;
+    }while(X1>tp and Y1>tp);
+
    if (SDL_Init(SDL_INIT_VIDEO) == 0) {
         SDL_Event event;
         SDL_Window* window = NULL;
@@ -24,8 +30,7 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-            X1=200; //a
-            Y1=200; //b
+          
 
             X=0;
             Y=Y1;

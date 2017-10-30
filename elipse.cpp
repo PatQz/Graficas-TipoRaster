@@ -19,8 +19,15 @@ int main( int argc, char* args[] ){
         SDL_Event event;
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
-
+            cout<<"=PROGRAMA GENERADOR DE ELIPSES A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+        do{cout<<"Ingrese valor de X1: ";
+        cin>>X1;
+        cout<<"Ingrese valor de Y1: ";
+        cin>>Y1;
+        }while(X1>tp and Y1>tp);
+        //window = SDL_CreateWindow( "Elipse", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if (SDL_CreateWindowAndRenderer(tp,tp, 0, &window, &renderer) == 0) {
+
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
             SDL_RenderClear(renderer);
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
