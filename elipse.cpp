@@ -35,10 +35,10 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-
+            
             X=0;
             Y=Y1;
-            d1=pow(Y1,2)-(pow(X1,2)*Y1) + (pow(X1,2)/4.0); //valor inicial de dF(1,b-1/2)
+            d1=pow(Y1,2)-(pow(X1,2)*Y1) + (pow(X1,2)/4.0); 
             SDL_RenderDrawPoint(renderer, X+300, Y+300);
             SDL_RenderDrawPoint(renderer, -X+300, Y+300);
             SDL_RenderDrawPoint(renderer, X+300, -Y+300);

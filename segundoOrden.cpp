@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <math.h>
-#include <iostream>
+#include<iostream>
 using namespace std;
 int main( int argc, char* args[] ){
     int X1,Y1,X2,Y2;
     int tp=600;
-    int r;
-    double dY, dX,k,X,Y,av,avR,avI,d1,d2,u,v;
+    double dY, dX,k,X,Y,av,avR,avI,d1,d2,u,v,r;
 
     //Event handler
     SDL_Event e;
@@ -28,20 +27,26 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-            
+        
+            //(0,r)
+            int d=1-r; //valor inicial de d
+            int dE=3;
+            int dSE=-2*r+5;
+
             X=0;
             Y=r;
-            d1=1-r; //valor inicial de dF(1,b-1/2)
 
             while(X<Y){
-                X=X+1;
-                if(d1<0){
-                    //E
-                    d1+=(2*X)+3;
+                X++;
+                if(d<0){
+                    d +=dE;
+                    dE+=2;
+                    dSE+=2;
                 }else{
-                    //SE
-                    d1+=(2*X)-(2*Y)+5;
-                    Y=Y-1;
+                    d+=dSE;
+                    dE+=2;
+                    dSE+=4;
+                    Y--;
                 }
                 SDL_RenderDrawPoint(renderer, X+300, Y+300);
                 SDL_RenderDrawPoint(renderer, -X+300, Y+300);
@@ -52,7 +57,7 @@ int main( int argc, char* args[] ){
                 SDL_RenderDrawPoint(renderer,-Y+300, X+300);
                 SDL_RenderDrawPoint(renderer,Y+300, -X+300);
                 SDL_RenderDrawPoint(renderer,-Y+300, -X+300);
-            }
+             }
 
         SDL_RenderPresent(renderer);
         while (1) {
