@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <math.h>
-
+#include <iostream>
+using namespace std;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
@@ -34,8 +35,6 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-            X1=200; //a
-            Y1=100; //b
 
             X=0;
             Y=Y1;
