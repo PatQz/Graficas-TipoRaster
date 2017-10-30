@@ -9,9 +9,10 @@ int main( int argc, char* args[] ){
     x=0;
    int limite=600;
     cout<<"=PROGRAMA GENERADOR DE PARABOLAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
-    do{cout<<"Ingrese valor de p (parametro): ";
-    cin>>p;
-    }while(p>0 && p>limite);
+    do{
+        cout<<"Ingrese valor de p (parametro): ";
+        cin>>p;
+    }while(p>limite); //FALTA SI P ES MENOR QUE 0
 
    if (SDL_Init(SDL_INIT_VIDEO) == 0) {
         SDL_Event event;

@@ -4,7 +4,8 @@
 #include <iostream>
 using namespace std;
 int main( int argc, char* args[] ){
-   int x,y,a,b,d1,d2,p;
+   int x,y,d1,d2,p;
+   double a,b;
    int limite=600;
 
    if (SDL_Init(SDL_INIT_VIDEO) == 0) {
@@ -37,16 +38,17 @@ int main( int argc, char* args[] ){
         while(x<=limite){
             //cout<<"Entre we R1"<<endl;
             //y++;
-            if(d1<=0)
-            {
+            if(d1<=0){
                 //N
+                cout<<"N"<<endl;
                  d1+=-(2*pow(a,2)*y)-(3*pow(a,2));
+                cout<<d1<<endl;
                 x++;
                 y++;
-            }
-            else
+            }else
             {
                 //NE
+                cout<<"NE"<<endl;
                 y++;
                 d1+=(2*pow(b,2))*(x+2*pow(b,2))-(2*pow(a,2)*y)-(3*pow(a,2));
             }
@@ -74,7 +76,7 @@ int main( int argc, char* args[] ){
                 //y++; 
                 }
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
-            SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            //SDL_RenderDrawPoint(renderer, -x+300, -y+300);
             }
         }
 
