@@ -4,13 +4,14 @@
 #include<iostream>
 using namespace std;
 int main( int argc, char* args[] ){
-    int X1,Y1,X2,Y2;
-    int tp=600;
-    double dY, dX,k,X,Y,av,avR,avI,d1,d2,u,v,r;
+    int d,dE,dSE;
+    int tp=600,r;
+    double X,Y,r;
 
     //Event handler
     SDL_Event e;
-        cout<<"=PROGRAMA GENERADOR DE LINEAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+
+    cout<<"=PROGRAMA GENERADOR DE CIRCUNFERENCIAS POR SEGUNDO ORDEN="<<endl;
     do{cout<<"Ingrese valor del radio: ";
         cin>>r;
     }while(r>tp);
@@ -29,9 +30,9 @@ int main( int argc, char* args[] ){
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
         
             //(0,r)
-            int d=1-r; //valor inicial de d
-            int dE=3;
-            int dSE=-2*r+5;
+            d=1-r; //valor inicial de d
+            dE=3;
+            dSE=-2*r+5;
 
             X=0;
             Y=r;

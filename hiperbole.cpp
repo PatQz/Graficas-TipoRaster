@@ -20,52 +20,55 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 300,0,300,600);
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
-        a=100;
-        b=100;
+
+        cout<<"=PROGRAMA GENERADOR DE LINEAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+        do{cout<<"Ingrese valor de a: ";
+            cin>>a;
+            cout<<"Ingrese valor de b: ";
+            cin>>b;
+        }while(a>limite and b>limite);
+
         y=0;
-        x=0;
+        x=a;
+
+        double aa = a*a;
+        double bb = b*b;
+        double fx = bb*2*a, fy = 0;
+        double d1 = 2*aa - bb - 2*a*bb;
 
         d1=(pow(b,2)*pow(x+0.5,2))-(pow(a,2)*pow(y+1.0,2))-(pow(a,2)*pow(b,2));
-        while(x<=limite){
-            //cout<<"Entre we R1"<<endl;
-            //y++;
-            if(d1<=0){
+        while(fx > fy && x<=limite){
+            if(d1<=-bb/2.0){
                 //N
-                cout<<"N"<<endl;
-                 d1+=-(2*pow(a,2)*y)-(3*pow(a,2));
-                cout<<d1<<endl;
-                x++;
-                y++;
-            }else
-            {
+                d1+=-(2*pow(a,2)*y)-(3*pow(a,2));
+                //x++;
+               
+            }else{
                 //NE
-                cout<<"NE"<<endl;
-                y++;
+                x++;
                 d1+=(2*pow(b,2))*(x+2*pow(b,2))-(2*pow(a,2)*y)-(3*pow(a,2));
+                fx += bb*2;
             }
-            SDL_RenderDrawPoint(renderer, x+300+a, -y+300);
+            y++;
+            fy += aa*2;
+            SDL_RenderDrawPoint(renderer, x+300, -y+300);
             //SDL_RenderDrawPoint(renderer, -x+300, -y+300);
             }
         
-        //cout<<"Entre we R2"<<endl;
         //REGION II
         if(a>b){
-        d2=(pow(b,2)*pow(x+1.0,2))-(pow(a,2)*pow(y+0.5,2))-(pow(a,2)*pow(b,2));
-        while(y<=limite){
-            if(d2<=0){
-                //NE
-                //cout<<"Entre we NE"<<endl;
-                d2+=(2*pow(b,2))*x+(3*pow(b,2))-2*pow(a,2)*y-2*pow(a,2);
-                
-                x++;
-                y++;
-            }else{
-                //E
-                //cout<<"Entre we N"<<endl;
-                d2+=2*pow(b,2)*y+3*pow(b,2);
-                x++;
-                //y++; 
+            //d2=(pow(b,2)*pow(x+1.0,2))-(pow(a,2)*pow(y+0.5,2))-(pow(a,2)*pow(b,2));
+            while(x<=limite){
+                if(d2<=-aa/2){
+                      //NE
+                    d2+=(2*pow(b,2))*x+(3*pow(b,2))-2*pow(a,2)*y-2*pow(a,2);
+                    y++;
+
+                }else{
+                    //E
+                    d2+=2*pow(b,2)*y+3*pow(b,2);
                 }
+                y++;
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
             //SDL_RenderDrawPoint(renderer, -x+300, -y+300);
             }
