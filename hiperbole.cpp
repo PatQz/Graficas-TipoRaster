@@ -21,13 +21,14 @@ int main( int argc, char* args[] ){
             SDL_RenderDrawLine(renderer, 0,300,600,300);
             SDL_SetRenderDrawColor(renderer, 255, 0,255, 255);
 
-        cout<<"=PROGRAMA GENERADOR DE LINEAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
+        /*cout<<"=PROGRAMA GENERADOR DE LINEAS A PARTIR DE ALGORITMO DE PUNTO MEDIO="<<endl;
         do{cout<<"Ingrese valor de a: ";
             cin>>a;
             cout<<"Ingrese valor de b: ";
             cin>>b;
-        }while(a>limite and b>limite);
-
+        }while(a>limite and b>limite);*/
+        a=150;
+        b=100;
         x=a;
         y=0;
 
@@ -42,13 +43,13 @@ int main( int argc, char* args[] ){
             if(d1>0){
                 //N
                 //CAMBIAR
-                d1 += -4*aa*(2*y-3);
+                d1 += -2*aa*y-3*aa;//-4*aa*(2*y-3);
                 
             }else{
                 //NE
                 x++;
                 //CAMBIAR
-                d1 = d1 + 4*2*bb*(x+1) - 4*aa*( 2*y +3);
+                d1 = 2*bb*x+2*bb-2*aa*y-3*aa;//d1 + 4*2*bb*(x+1) - 4*aa*( 2*y +3);
             }
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
             SDL_RenderDrawPoint(renderer, x+300, y+300);
@@ -59,22 +60,22 @@ int main( int argc, char* args[] ){
         //REGION II
         if(a>b){
             //este 
-            d2=2*bb*(x+1)*(x+1) - 2*aa*bb - aa*(y*y + (y+1)*(y+1));
-            //o este
-            //d2=(bb*pow(x+1.0,2))-(aa*pow(y+0.5,2))-(aa*bb);
+            d2=(bb*pow(x+1.0,2))-(aa*pow(y+0.5,2))-(aa*bb);
             while(x<=limite){
                 x++;
                 if(d2>0){
-                    //NE
+                     //NE
                     y++;
-                    d2+=(2*bb*x+(3*bb)-2*aa*y-2*aa);
-                    
+                    d2+=(2*bb*x)-(3*bb)-(2*aa*y)-(2*aa);   
                 }else{
-                    //E
-                    d2+=2*bb*y+3*bb;
+                   //E
+
+                    d2+=-2*bb*-3*bb;
                 }
             SDL_RenderDrawPoint(renderer, x+300, -y+300);
             SDL_RenderDrawPoint(renderer, x+300, y+300);
+             SDL_RenderDrawPoint(renderer, -x+300, -y+300);
+            SDL_RenderDrawPoint(renderer, -x+300, y+300);
             }
         }
 
